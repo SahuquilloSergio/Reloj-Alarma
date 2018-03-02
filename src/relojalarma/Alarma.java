@@ -1,26 +1,54 @@
 package relojalarma;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import javax.swing.JOptionPane;
+
 
 public class Alarma {
+    static Date hora = new Date();
+    static public int horas, minutos, segundos;
+    static public String HCompleta=horas+":"+minutos;
+    static public boolean encendido=false;
 
-    private boolean encendido=true;
     
-    public void encender(){
+   public Alarma(){
+//       hora = new Date();
+       horas=Reloj.horas;
+       minutos = Reloj.minutos;
+       segundos = Reloj.segundos;
+   }
+   
+   public static void sumarH(){
+    if(horas<23){
+        horas++;
+    }else{
+        horas=0;
+    }
+   }
+   
+   public static void sumarMin(){
+       if(minutos<59){
+           minutos++;
+       }else{
+           minutos=0;
+           if(horas<23){
+               Alarma.horas++;
+           }else{
+               Alarma.horas=0;
+           }
+       }
+   }
+    
+    
+    public static void encender(){
         boolean encendido=true;
     }
     
-    public void apagar(){
+    public static void apagar(){
         boolean encendido=false;
     }
     
-    public static void configurarAlarma(){
-        JOptionPane.showInputDialog("Hora de la Alarma");
-        System.out.println(new Date());
-        
+    public static String getHCompleta(){
+        return HCompleta;
     }
     
 
