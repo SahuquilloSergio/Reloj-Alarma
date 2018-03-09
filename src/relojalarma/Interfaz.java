@@ -5,6 +5,9 @@
  */
 package relojalarma;
 
+import java.awt.Font;
+import javax.swing.JTextField;
+
 /**
  *
  * @author serxa
@@ -18,6 +21,10 @@ public class Interfaz extends javax.swing.JFrame {
     public Interfaz() {
         initComponents();
         setVisible(true);
+        Font fuente = new Font("Dialog", Font.BOLD, 60);
+        Visualizador.setFont(fuente);
+        Visualizador.setHorizontalAlignment(JTextField.CENTER);
+        TFmostrar.setText("Reloj");
         
     }
 
@@ -126,14 +133,14 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGap(0, 355, Short.MAX_VALUE)
                         .addComponent(Visualizador, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(encendido, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(TFmostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(125, 125, 125))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(encendido, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,14 +182,18 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void ShowAlarmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAlarmaActionPerformed
         // TODO add your handling code here:
+        Alarma alarma;
         reloj_alarma=false;
         TFmostrar.setText("Alarma");
+        reloj_alarma=false;
+        if(Alarma.encendido==false)
+            alarma=new Alarma();
         
     }//GEN-LAST:event_ShowAlarmaActionPerformed
 
     private void VisualizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizadorActionPerformed
         // TODO add your handling code here:
-        Visualizador.setText(Reloj.HCompleta);
+        
     }//GEN-LAST:event_VisualizadorActionPerformed
 
     private void ON_alarmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ON_alarmaActionPerformed
@@ -199,20 +210,12 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void Add_HoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_HoursActionPerformed
         // TODO add your handling code here:
-        if(reloj_alarma==true){
-            Reloj.sumarH();
-        }else{
-            Alarma.sumarH();
-        }
+        incrementarHoras();
     }//GEN-LAST:event_Add_HoursActionPerformed
 
     private void Add_minActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_minActionPerformed
         // TODO add your handling code here:
-        if(reloj_alarma==true){
-            Reloj.sumarMin();
-        }else{
-            Alarma.sumarMin();
-        }
+        incrementarMinutos();
     }//GEN-LAST:event_Add_minActionPerformed
 
     private void encendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encendidoActionPerformed
@@ -260,6 +263,19 @@ public class Interfaz extends javax.swing.JFrame {
     
     public static void mostrarAlarma(){
         Visualizador.setText(Alarma.getHCompleta());
+    }
+    
+    public static void incrementarHoras(){
+        if(reloj_alarma==true)
+            Reloj.sumarH();
+        else
+            Alarma.sumarH();
+    }
+     public static void incrementarMinutos(){
+        if(reloj_alarma==true)
+            Reloj.sumarMin();
+        else
+            Alarma.sumarMin();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -3,7 +3,7 @@ package relojalarma;
 import java.util.Date;
 
 public class Reloj {
-   static Date hora = new Date();
+   static Date hora;
    static int horas;
    static int minutos;
    static int segundos;
@@ -11,28 +11,29 @@ public class Reloj {
     
     
     public Reloj(){
-    horas = hora.getHours();
-    minutos = hora.getMinutes();
-    segundos = hora.getSeconds();
+        hora = new Date();
+        horas = hora.getHours();
+        minutos = hora.getMinutes();
+        segundos = hora.getSeconds();
 }
     
     public static void sumarH(){
         if(horas<23)
-            horas++;
+            Reloj.horas++;
         else{
-            horas=0;
+            Reloj.horas=0;
         }
     }
     
     public static void sumarMin(){
         if(minutos<59){
-            minutos++;
+            Reloj.minutos++;
         }else{
-            minutos=0;
+            Reloj.minutos=0;
             if(horas<23){
-                horas++;
+                Reloj.horas++;
             }else
-                horas=0;
+                Reloj.horas=0;
         }
     }
     

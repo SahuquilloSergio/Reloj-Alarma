@@ -15,21 +15,22 @@ public class Alarma {
        horas=Reloj.horas;
        minutos = Reloj.minutos;
        segundos = Reloj.segundos;
+       HCompleta=horas+":"+minutos;
    }
    
    public static void sumarH(){
     if(horas<23){
-        horas++;
+        Alarma.horas++;
     }else{
-        horas=0;
+        Alarma.horas=0;
     }
    }
    
    public static void sumarMin(){
        if(minutos<59){
-           minutos++;
+           Alarma.minutos++;
        }else{
-           minutos=0;
+           Alarma.minutos=0;
            if(horas<23){
                Alarma.horas++;
            }else{
@@ -48,7 +49,7 @@ public class Alarma {
     }
     
     public static String getHCompleta(){
-        return HCompleta;
+        return horas+":"+minutos;
     }
     
 
